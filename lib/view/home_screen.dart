@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_jokes/bloc/jokes_bloc.dart';
@@ -28,7 +30,7 @@ class _HomepageState extends State<Homepage> {
                 child: BlocListener<JokesBloc, JokesState>(
                   listener: (context, state) {
                     if (state is JokesError) {
-                      print("Error");
+                      log("error");
                     }
                   },
                   child: BlocBuilder<JokesBloc, JokesState>(
@@ -52,10 +54,11 @@ class _HomepageState extends State<Homepage> {
               ),
             ),
             ElevatedButton(
-                onPressed: () {
-                  _bloc.add(GetJokesData());
-                },
-                child: const Text("Click to get the jokes"))
+              onPressed: () {
+                _bloc.add(GetJokesData());
+              },
+              child: const Text("Click to get the jokes"),
+            ),
           ],
         ),
       ),
